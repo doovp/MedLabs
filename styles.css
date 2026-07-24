@@ -1,1 +1,170 @@
+/* -------------------------------------------------------------------------
+   Starter Template Stylesheet
+   Everything below is driven by the custom properties in :root — change
+   those first and most of the page restyles itself.
+   ------------------------------------------------------------------------- */
 
+:root {
+  /* Color */
+  --color-bg: #ffffff;
+  --color-surface: #f5f5f7;
+  --color-text: #17181c;
+  --color-text-muted: #62636c;
+  --color-border: #e5e5ea;
+  --color-primary: #3452e0;
+  --color-primary-dark: #2740b8;
+  --color-on-primary: #ffffff;
+
+  /* Type */
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: var(--font-body);
+
+  /* Spacing */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+
+  /* Layout */
+  --container-width: 72rem;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(16, 17, 20, 0.04), 0 8px 24px rgba(16, 17, 20, 0.06);
+}
+
+/* Reset -------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body, h1, h2, h3, p, figure { margin: 0; }
+ul[class], ol[class] { list-style: none; margin: 0; padding: 0; }
+img, picture { max-width: 100%; display: block; }
+input, button, textarea, select { font: inherit; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Base ----------------------------------------------------------------------- */
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(2.25rem, 4vw, 3.25rem); }
+h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); }
+
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Layout helpers --------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-inline: auto;
+  padding-inline: var(--space-3);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: var(--space-2);
+  top: var(--space-2);
+}
+
+/* Header ------------------------------------------------------------------------ */
+.site-header { border-bottom: 1px solid var(--color-border); }
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--space-2);
+}
+
+.logo { font-weight: 700; color: var(--color-text); font-size: 1.125rem; }
+
+.nav { display: flex; gap: var(--space-3); }
+.nav a { color: var(--color-text-muted); font-weight: 500; }
+.nav a:hover { color: var(--color-text); text-decoration: none; }
+
+/* Hero -------------------------------------------------------------------------- */
+.hero { padding-block: var(--space-5); max-width: 40rem; }
+
+.hero .lead {
+  margin-top: var(--space-2);
+  font-size: 1.125rem;
+  color: var(--color-text-muted);
+}
+
+.button {
+  display: inline-block;
+  margin-top: var(--space-3);
+  padding: 0.75rem 1.5rem;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: var(--radius);
+  font-weight: 600;
+  transition: background-color 0.15s ease;
+}
+
+.button:hover { background: var(--color-primary-dark); text-decoration: none; }
+
+/* Feature cards ------------------------------------------------------------------- */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  box-shadow: var(--shadow);
+}
+
+.card h2 { font-size: 1.125rem; margin-bottom: var(--space-1); }
+.card p { color: var(--color-text-muted); }
+
+/* Footer ------------------------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+/* Responsive ---------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .header-inner { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+  .nav { flex-wrap: wrap; gap: var(--space-2); }
+  .features { grid-template-columns: 1fr; }
+}
